@@ -2,9 +2,14 @@
 Turn Electron Apps into Windows Store AppX Packages
 
 ## How to use
-1) Package application using electron-packager (or something similar)
-2) Zip the contents as app.zip (without using a subdirectory - ./yourapp.exe)
-3) Copy together with ElectronInstaller.exe into a folder
+
+#### Package your Electron Application
+Package application using electron-packager (or something similar)
+
+#### Create Archive
+Zip the contents as app.zip (without using a subdirectory - ./yourapp.exe). (To be automated)
+
+#### Copy together with ElectronInstaller.exe into a folder. (To be automated)
 
 #### Execute the Desktop Converter
 Execute the converter, passing in the "ElectronInstaller.exe" as your installer. :warning: Please ensure that your `Publisher` name matches the one in your certificate. If you [do not yet have a certificate, you can create one](#sign-the-package).
