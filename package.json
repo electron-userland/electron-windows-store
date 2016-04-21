@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/CatalystCode/electron-windows-store#readme",
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "path-exists": "^2.1.0"
   }
 }
