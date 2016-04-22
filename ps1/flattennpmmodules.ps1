@@ -22,9 +22,7 @@ write-host "Flattening npm modules from this directory: " $dir
 if(!$dir.EndsWith('\')){
 	$dir = $dir + '\'
 }
-write-host "npm install..."
-cd $dir
-npm install
+
 write-host "Processing root level..."
 Get-ChildItem $dir -Directory | ForEach-Object {
 	if($_.Name -eq 'node_modules'){
