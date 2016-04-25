@@ -4,17 +4,18 @@
  * Module dependencies.
  */
 
-const program      = require('commander');
-const path         = require('path');
-const package      = require('../package.json');
-const ensureParams = require('../lib/params');
-const zip          = require('../lib/zip');
-const flatten      = require('../lib/flatten');
-const setup        = require('../lib/setup');
-const sign         = require('../lib/sign');
-const assets       = require('../lib/assets');
-const convert      = require('../lib/convert');
-const makeappx     = require('../lib/makeappx');
+var program      = require('commander');
+var path         = require('path');
+var package      = require('../package.json');
+var ensureParams = require('../lib/params');
+var zip          = require('../lib/zip');
+var flatten      = require('../lib/flatten');
+var setup        = require('../lib/setup');
+var sign         = require('../lib/sign');
+var assets       = require('../lib/assets');
+var convert      = require('../lib/convert');
+var makeappx     = require('../lib/makeappx');
+var manifest     = require('../lib/manifest');
 
 // Ensure Node 4
 if (parseInt(process.versions.node[0], 10) < 4) {
