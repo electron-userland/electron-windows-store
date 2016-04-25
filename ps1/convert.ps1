@@ -3,6 +3,11 @@ Param(
     [Parameter(Mandatory=$True, ParameterSetName="Convert")]
     [string]
     [ValidateNotNullOrEmpty()]
+    $LogFile,
+    
+    [Parameter(Mandatory=$True, ParameterSetName="Convert")]
+    [string]
+    [ValidateNotNullOrEmpty()]
     $Installer,
     
     [Parameter(Mandatory=$True, ParameterSetName="Convert")]
@@ -41,4 +46,4 @@ Param(
     $AppExecutable
 )
 
-Start-Process powershell -ArgumentList "-noprofile -file $Converter -Installer $Installer -ExpandedBaseImage $ExpandedBaseImage -Destination $Destination -PackageName $PackageName -Version $Version -Publisher $Publisher -AppExecutable $AppExecutable -Verbose" -verb RunAs
+Start-Process powershell -WindowStyle Hidden -ArgumentList "-noprofile -nologo -file $Converter -LogFile $LogFile -Installer $Installer -ExpandedBaseImage $ExpandedBaseImage -Destination $Destination -PackageName $PackageName -Version $Version -Publisher $Publisher -AppExecutable $AppExecutable -Verbose" -verb RunAs

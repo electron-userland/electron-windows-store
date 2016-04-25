@@ -61,3 +61,4 @@ The Electron auto-updater module on Windows is based on Squirrel, which is not a
 
 ## Things that are broken
 - MAX_PATH is an issue, especially due to the long base path
+- Once the Desktop App Converter is installed, you will have to comment out line 150 in `sequencer.ps1`.
