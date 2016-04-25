@@ -4,16 +4,17 @@
  * Module dependencies.
  */
 
-var program    = require('commander');
-
-var package      = require('../package.json');
-var ensureParams = require('../lib/params');
-var zip          = require('../lib/zip');
-var flatten      = require('../lib/flatten');
-var setup        = require('../lib/setup');
-var convert      = require('../lib/convert');
-var assets       = require('../lib/assets');
-var makeappx     = require('../lib/makeappx');
+const program      = require('commander');
+const path         = require('path');
+const package      = require('../package.json');
+const ensureParams = require('../lib/params');
+const zip          = require('../lib/zip');
+const flatten      = require('../lib/flatten');
+const setup        = require('../lib/setup');
+const sign         = require('../lib/sign');
+const assets       = require('../lib/assets');
+const convert      = require('../lib/convert');
+const makeappx     = require('../lib/makeappx');
 
 // Ensure Node 4
 if (parseInt(process.versions.node[0], 10) < 4) {
@@ -41,4 +42,7 @@ setup(program)
     .then(() => assets(program))
     .then(() => manifest(program))
     .then(() => makeappx(program))
-    .catch(e => console.log(e));
+    .then(() => {
+      return sign.signAppx(program.devCert, path.join(program.outputDirectory, '\\appx\\', program.packageName));
+    })
+    .catch(e => {console.log(e); console.log(e.stack);});
