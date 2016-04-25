@@ -16,46 +16,24 @@ If (-Not (Test-path $source)) {
 
 $flattenbin = (get-item $PSScriptRoot).parent.FullName + '\node_modules\flatten-packages\bin\flatten'
 
+function flatMe([string]$path){
+	write-host "Get subdirectories of: " $path
+	Get-ChildItem $path -Directory | ForEach-Object {
+		if($_.Name -eq 'node_modules'){
+			write-host "Flattening: " $path
+			node $flattenbin $path
+		}else{
+			flatMe($path + '\' + $_)
+		}
+	}
+}
+
 $dir = $source
 write-host "Flattening npm modules from this directory: " $dir
 
 if(!$dir.EndsWith('\')){
 	$dir = $dir + '\'
 }
+flatMe($dir)
 
-write-host "Processing root level..."
-Get-ChildItem $dir -Directory | ForEach-Object {
-	if($_.Name -eq 'node_modules'){
-			write-host $dir
-			node $flattenbin $dir
-	}
-}
 
-write-host "Processing SubDirectories..."
-Get-ChildItem $dir -Directory | ForEach-Object {
-	$path = $dir + $_
-	
-	Get-ChildItem $path -Directory | ForEach-Object{
-		if($_.Name -eq 'node_modules'){
-			write-host $path
-			node $flattenbin $path
-		}
-	}
-	
-}
-
-write-host "Processing Sub-SubDirectories..."
-Get-ChildItem $dir -Directory | ForEach-Object {
-	$path = $dir + $_
-	
-	Get-ChildItem $path -Directory | ForEach-Object{
-		$subpath = $path + '\' + $_
-	
-		Get-ChildItem $subpath -Directory | ForEach-Object{
-			if($_.Name -eq 'node_modules'){
-				write-host $subpath
-				node $flattenbin $subpath
-			}
-		}
-	}
-}
