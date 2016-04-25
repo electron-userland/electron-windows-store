@@ -17,13 +17,16 @@ If (-Not (Test-path $source)) {
 $flattenbin = (get-item $PSScriptRoot).parent.FullName + '\node_modules\flatten-packages\bin\flatten'
 
 function flatMe([string]$path){
+	if(!$path.EndsWith('\')){
+		$path = $path + '\'
+	}
 	write-host "Get subdirectories of: " $path
 	Get-ChildItem $path -Directory | ForEach-Object {
 		if($_.Name -eq 'node_modules'){
 			write-host "Flattening: " $path
 			node $flattenbin $path
 		}else{
-			flatMe($path + '\' + $_)
+			flatMe($path + $_)
 		}
 	}
 }
@@ -31,9 +34,7 @@ function flatMe([string]$path){
 $dir = $source
 write-host "Flattening npm modules from this directory: " $dir
 
-if(!$dir.EndsWith('\')){
-	$dir = $dir + '\'
-}
+
 flatMe($dir)
 
 
