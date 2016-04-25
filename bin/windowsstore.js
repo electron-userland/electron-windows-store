@@ -12,6 +12,7 @@ var zip          = require('../lib/zip');
 var flatten      = require('../lib/flatten');
 var setup        = require('../lib/setup');
 var convert      = require('../lib/convert');
+var assets       = require('../lib/assets');
 
 // Ensure Node 4
 if (parseInt(process.versions.node[0], 10) < 4) {
@@ -26,6 +27,7 @@ program
     .option('-p, --package-version <ver>', 'Version of the app package')
     .option('-n, --package-name <name>', 'Name of the app package')
     .option('-e, --package-executable <executable>', 'Path to the package executable')
+    .option('-a, --assets <assets>', 'Path to the visual assets for the appx')
     .parse(process.argv);
 
 setup(program)
@@ -33,4 +35,5 @@ setup(program)
     .then(() => flatten(program.inputDirectory, program.flatten))
     .then(() => zip(program.inputDirectory, program.outputDirectory))
     .then(() => convert(program))
+    .then(() => assets(program))
     .catch(e => console.log(e));
