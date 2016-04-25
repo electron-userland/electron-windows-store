@@ -11,6 +11,7 @@ var ensureParams = require('../lib/params');
 var zip          = require('../lib/zip');
 var flatten      = require('../lib/flatten');
 var setup        = require('../lib/setup');
+var convert      = require('../lib/convert');
 
 // Ensure Node 4
 if (parseInt(process.versions.node[0], 10) < 4) {
@@ -21,11 +22,15 @@ program
     .version(package.version)
     .option('-i, --input-directory <dir>', 'Directory containing your application')
     .option('-o, --output-directory <dir>', 'Output directory for the appx')
-    .option('-f, --flatten', 'Flatten Node modules without warning')
+    .option('-f, --flatten <flatten>', 'Flatten Node modules without warning', (i) => (i === 'true'))
+    .option('-p, --package-version <ver>', 'Version of the app package')
+    .option('-n, --package-name <name>', 'Name of the app package')
+    .option('-e, --package-executable <executable>', 'Path to the package executable')
     .parse(process.argv);
 
 setup(program)
     .then(() => ensureParams(program))
     .then(() => flatten(program.inputDirectory, program.flatten))
     .then(() => zip(program.inputDirectory, program.outputDirectory))
+    .then(() => convert(program))
     .catch(e => console.log(e));
