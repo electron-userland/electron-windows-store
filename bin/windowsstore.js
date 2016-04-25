@@ -28,6 +28,7 @@ program
     .option('-n, --package-name <name>', 'Name of the app package')
     .option('-e, --package-executable <executable>', 'Path to the package executable')
     .option('-a, --assets <assets>', 'Path to the visual assets for the appx')
+    .option('-m, --manifest <manifest>', 'Path to a manifest, if you want to overwrite the default one')
     .parse(process.argv);
 
 setup(program)
@@ -36,4 +37,5 @@ setup(program)
     .then(() => zip(program.inputDirectory, program.outputDirectory))
     .then(() => convert(program))
     .then(() => assets(program))
+    .then(() => manifest(program))
     .catch(e => console.log(e));
