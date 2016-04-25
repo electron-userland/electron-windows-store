@@ -41,5 +41,4 @@ Param(
     $AppExecutable
 )
 
-Write-Host "-noprofile -file $Converter -Installer $Installer -ExpandedBaseImage $ExpandedBaseImage -Destination $Destination -PackageName $PackageName -Version $Version -Publisher $Publisher -AppExecutable $AppExecutable -Verbose";
 Start-Process powershell -ArgumentList "-noprofile -file $Converter -Installer $Installer -ExpandedBaseImage $ExpandedBaseImage -Destination $Destination -PackageName $PackageName -Version $Version -Publisher $Publisher -AppExecutable $AppExecutable -Verbose" -verb RunAs
