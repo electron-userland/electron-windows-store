@@ -44,6 +44,6 @@ setup(program)
     .then(() => manifest(program))
     .then(() => makeappx(program))
     .then(() => {
-      return sign.signAppx(program.devCert, path.join(program.outputDirectory, '\\appx\\', program.packageName));
+      return sign.signAppx(program.devCert, path.join(program.outputDirectory, 'appx', program.packageName));
     })
     .catch(e => {console.log(e); console.log(e.stack);});
