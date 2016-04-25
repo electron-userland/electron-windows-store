@@ -4,19 +4,24 @@
  * Module dependencies.
  */
 
-const program    = require('commander');
+var program    = require('commander');
 
-const package      = require('../package.json');
-const ensureParams = require('../lib/params');
-const zip          = require('../lib/zip');
-const flatten      = require('../lib/flatten');
+var package      = require('../package.json');
+var ensureParams = require('../lib/params');
+var zip          = require('../lib/zip');
+var flatten      = require('../lib/flatten');
+
+// Ensure Node 4
+if (parseInt(process.versions.node[0], 10) < 4) {
+    console.log('You need at least Node 4.x to run this script');
+}
 
 program
-  .version(package.version)
-  .option('-i, --input-directory <dir>', 'Directory containing your application')
-  .option('-o, --output-directory <dir>', 'Output directory for the appx')
-  .option('-f, --flatten', 'Flatten Node modules without warning')
-  .parse(process.argv);
+    .version(package.version)
+    .option('-i, --input-directory <dir>', 'Directory containing your application')
+    .option('-o, --output-directory <dir>', 'Output directory for the appx')
+    .option('-f, --flatten', 'Flatten Node modules without warning')
+    .parse(process.argv);
 
 ensureParams(program)
     .then(() => flatten(program.inputDirectory, program.flatten))
