@@ -10,6 +10,7 @@ var package      = require('../package.json');
 var ensureParams = require('../lib/params');
 var zip          = require('../lib/zip');
 var flatten      = require('../lib/flatten');
+var setup        = require('../lib/setup');
 
 // Ensure Node 4
 if (parseInt(process.versions.node[0], 10) < 4) {
@@ -23,7 +24,8 @@ program
     .option('-f, --flatten', 'Flatten Node modules without warning')
     .parse(process.argv);
 
-ensureParams(program)
+setup(program)
+    .then(() => ensureParams(program))
     .then(() => flatten(program.inputDirectory, program.flatten))
     .then(() => zip(program.inputDirectory, program.outputDirectory))
     .catch(e => console.log(e));

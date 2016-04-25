@@ -1,36 +1,39 @@
 {
-    "name": "electron-windows-store",
-    "version": "1.0.0",
-    "description": "Compile Electron Apps into Windows Store AppX packages",
-    "main": "bin/start.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/CatalystCode/electron-windows-store.git"
-    },
-    "keywords": [
-        "Electron",
-        "App",
-        "Windows",
-        "Store",
-        "Appx",
-        "UWP"
-    ],
-    "engineStrict": true,
-    "engines": {
-        "node": ">=4.0.0"
-    },
-    "author": "",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/CatalystCode/electron-windows-store/issues"
-    },
-    "homepage": "https://github.com/CatalystCode/electron-windows-store#readme",
-    "dependencies": {
-        "commander": "^2.9.0",
-        "inquirer": "^1.0.2",
-        "path-exists": "^2.1.0"
-    }
+  "name": "electron-windows-store",
+  "version": "1.0.0",
+  "description": "Compile Electron Apps into Windows Store AppX packages",
+  "main": "bin/start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CatalystCode/electron-windows-store.git"
+  },
+  "keywords": [
+    "Electron",
+    "App",
+    "Windows",
+    "Store",
+    "Appx",
+    "UWP"
+  ],
+  "engineStrict": true,
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CatalystCode/electron-windows-store/issues"
+  },
+  "homepage": "https://github.com/CatalystCode/electron-windows-store#readme",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "commander": "^2.9.0",
+    "inquirer": "^1.0.2",
+    "lodash.defaults": "^4.0.1",
+    "multiline": "^1.0.2",
+    "path-exists": "^2.1.0"
+  }
 }
