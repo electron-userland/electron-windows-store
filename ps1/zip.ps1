@@ -25,6 +25,6 @@ If (-Not (Test-path $destination)) {
 
 # We're zipping using the sytem's compressor
 Add-Type -assembly "system.io.compression.filesystem"
-$zip = Join-Path -Path $destination -ChildPath windowsstore.zip
+$zip = Join-Path -Path $destination -ChildPath app.zip
 
 [io.compression.zipfile]::CreateFromDirectory($source, $zip)
