@@ -13,6 +13,7 @@ var flatten      = require('../lib/flatten');
 var setup        = require('../lib/setup');
 var convert      = require('../lib/convert');
 var assets       = require('../lib/assets');
+var makeappx     = require('../lib/makeappx');
 
 // Ensure Node 4
 if (parseInt(process.versions.node[0], 10) < 4) {
@@ -21,14 +22,15 @@ if (parseInt(process.versions.node[0], 10) < 4) {
 
 program
     .version(package.version)
-    .option('-i, --input-directory <dir>', 'Directory containing your application')
-    .option('-o, --output-directory <dir>', 'Output directory for the appx')
-    .option('-f, --flatten <flatten>', 'Flatten Node modules without warning', (i) => (i === 'true'))
-    .option('-p, --package-version <ver>', 'Version of the app package')
+    .option('-i, --input-directory <path>', 'Directory containing your application')
+    .option('-o, --output-directory <path>', 'Output directory for the appx')
+    .option('-f, --flatten <true|false>', 'Flatten Node modules without warning', (i) => (i === 'true'))
+    .option('-p, --package-version <version>', 'Version of the app package')
     .option('-n, --package-name <name>', 'Name of the app package')
-    .option('-e, --package-executable <executable>', 'Path to the package executable')
-    .option('-a, --assets <assets>', 'Path to the visual assets for the appx')
-    .option('-m, --manifest <manifest>', 'Path to a manifest, if you want to overwrite the default one')
+    .option('-e, --package-executable <executablePath>', 'Path to the package executable')
+    .option('-a, --assets <assetsPath>', 'Path to the visual assets for the appx')
+    .option('-m, --manifest <manifestPath>', 'Path to a manifest, if you want to overwrite the default one')
+    .option('-d, --deploy <true|false>', 'Should the app be deployed after creation?')
     .parse(process.argv);
 
 setup(program)
@@ -38,4 +40,5 @@ setup(program)
     .then(() => convert(program))
     .then(() => assets(program))
     .then(() => manifest(program))
+    .then(() => makeappx(program))
     .catch(e => console.log(e));
