@@ -1,64 +1,79 @@
 # Electron Apps in the Windows Store
-Turn Electron Apps into Windows Store AppX Packages
+Turn Your Electron Apps into Windows Store AppX Packages!
 
-## How to use
+Electron-Windows-Store: A CLI that takes the packaged output of your Electron app, then converts it into an AppX package. Once Windows Codename Redstone (also known as the "Windows Anniversary Update") is released, you will be able to submit your AppX packages to the Windows Store. When that happens, you will sign your apps with a Microsoft Certificate - but in the meantime, this widget can also help you sign your brand new appx package with a certificate trusted by your computer.
 
-#### Package your Electron Application
-Package application using electron-packager (or something similar)
+## System Requirements
 
-#### Create Archive
-Zip the contents as app.zip (without using a subdirectory - ./yourapp.exe). (To be automated)
+#### Supported Operating System
 
-#### Copy together with ElectronInstaller.exe into a folder. (To be automated)
+Windows 10 Anniversary Update - Preview (Build 14316 and up) - Enterprise edition
 
-#### Execute the Desktop Converter
-Execute the converter, passing in the "ElectronInstaller.exe" as your installer. :warning: Please ensure that your `Publisher` name matches the one in your certificate. If you [do not yet have a certificate, you can create one](#sign-the-package).
+#### Required Hardware Configuration
 
-```
-.\DesktopAppConverter.ps1 
-    -ExpandedBaseImage C:\ProgramData\Microsoft\Windows\Images\BaseImage-14316\
-    -Installer C:\Users\feriese\Desktop\input\ElectronInstaller.exe
-    -Destination C:\Users\feriese\Desktop\output\
-    -PackageName "YOURAPP"
-    -Publisher "CN=testca"
-    -Version 1.0.0.0
-    -AppExecutable "C:\Users\ContainerAdministrator\AppData\Roaming\e\YOURAPP.EXE"
-    -Verbose
-```
+Your computer must have the following minimum capabilities:
+- 64 bit (x64) processor
+- Hardware-assisted virtualization
+- Second Level Address Translation (SLAT)
 
-#### Add Tile Images, Logos, and Other Metadata
-At this point, your app consists of three components that can be found in the output folder: The Virtualized Filesystem (found in the `VFS` folder), visual assets for your app (found in `assets`) and an application manifest (found in `AppXManifesst.xml`). 
+## How to Install?
 
-Before proceeding with the next step, add icons, logos, descriptions, and other meta data you'd like to be in the app. For tipps and documents around tiles and icons, please see the ["Guidelines for tile and icon assets"](https://msdn.microsoft.com/en-us/windows/uwp/controls-and-patterns/tiles-and-notifications-app-assets). For more information about the package manifest, please [consult the docs](https://msdn.microsoft.com/en-us/library/windows/apps/br211474.aspx).
+### Prerequisites
+Before running the Electron-Windows-Store CLI, let's make sure we have all the prerequisites in place.
+- Download and follow the installation steps to install the Desktop App Converter from [here](https://www.microsoft.com/en-us/download/details.aspx?id=51691). You will get the following files: `DesktopAppConverter.zip` and `BaseImage-14316.wim`
+- Make sure you are running a Windows 10 Enterprise edition base image version 10.0.14316.0 and higher.
+- Download Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk)
+- Ensure you have Node 4.x
 
-#### Create AppX Package
-App packager (MakeAppx.exe) creates an app package from files on disk. It is included with the Windows SDK. The MakeAppx.exe tool is typically found inside your Windows 10 SDK installation folder. To pack the created directory into an appx, run:
+### Package Your Electron Application
+Package the application using [electron-packager](https://github.com/electron-userland/electron-packager) (or something similar). Make sure to remove node_modules that you don't want in your final app. 
+
+### Installing From NPM
+You can install the electron-windows-store cli npm package directly.
 
 ```
-cd "C:\Program Files (x86)\Windows Kits\10\bin\x64\"
-.\makeappx.exe pack /d C:\Users\feriese\Desktop\output\ /p C:\Users\feriese\Desktop\Ghost.appx
+npm install -g electron-windows-store
 ```
 
-#### Sign the Package
-Once Windows Codename Redstone (also known as the "Windows Anniversary Update") is released, you will be able to submit packages to the Windows Store. When that happens, you will sign your apps with a Microsoft Certificate - but in the meantime, you will need to sign your brand new appx package with a certificate trusted by your computer.
-
-If you have not already created one, use the tool `MakeCert.exe`. 
+## Running the Basic Version
+From an admin PowerShell window, run the `electron-windows-store` CLI. 
 
 ```
-cd "C:\Program Files (x86)\Windows Kits\10\bin\x64\"
-MakeCert.exe -r -h 0 -n "CN=<publisher_name>" -eku 1.3.6.1.5.5.7.3.3 -pe -sv <my.pvk> <my.cer>
-pvk2pfx.exe -pvk <my.pvk> -spc <my.cer> -pfx <my.pfx>
-signtool.exe sign -f <my.pfx> -fd SHA256 -v .\<outputAppX>.appx
+electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --flatten true --package-version 1.0.0.0 --package-name myelectronapp
 ```
 
-#### Deploy the Package
+> :bulb: Note: The first time you run this tool, we need to know some settings. We will ask you only once and store your answers in your profile folder in a .electron-windows-store file. You can also provide these values when running the CLI or create a .electron-windows-store file in your profile folder.
+
 ```
-Add-AppxPackage .\Ghost.appx
+{
+  "desktopConverter": "C:\\Tools\\DesktopConverter",
+  "expandedBaseImage": "C:\\ProgramData\\Microsoft\\Windows\\Images\\BaseImage-14316\\",
+  "publisher": "CN=developmentca",
+  "windowsKit": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64",
+  "devCert": "C:\Tools\DesktopConverter\Certs\devcert.pfx"
+}
 ```
 
-## Things to keep in mind
-The Electron auto-updater module on Windows is based on Squirrel, which is not available. Keep in mind that the Windows Store already provides auto-updating, so you can simply ensure that the auto-updater isn't hit when running inside the Windows Store (much like you would on Linux).
+Here are more options for the CLI:
 
-## Things that are broken
-- MAX_PATH is an issue, especially due to the long base path
-- Once the Desktop App Converter is installed, you will have to comment out line 150 in `sequencer.ps1`.
+```
+ -h, --help                                 output usage information
+ -V, --version                              output the version number
+ -i, --input-directory <path>               Directory containing your application
+ -o, --output-directory <path>              Output directory for the appx
+ -f, --flatten <true|false>                 Flatten Node modules without warning
+ -p, --package-version <version>            Version of the app package
+ -n, --package-name <name>                  Name of the app package
+ -e, --package-executable <executablePath>  Path to the package executable
+ -a, --assets <assetsPath>                  Path to the visual assets for the appx
+ -m, --manifest <manifestPath>              Path to a manifest, if you want to overwrite the default one
+ -d, --deploy <true|false>                  Should the app be deployed after creation?
+```
+
+## What is the CLI Doing?
+The electron-windows-store CLI takes the packaged output of your Electron app as an input. First it flattens the node_modules in the packaged output of the Electron app. Then it creates a zip file `app.zip` with the updated content of the packaged Electron app in the output folder you specified. With the `app.zip` file, the CLI uses the `DesktopAppConverter` utilities to convert the zip file into AppX packaged output files (including the `AppXManifest.xml` file) in the output folder you specified. Once we have the AppX packaged output files, the CLI uses App packager (MakeAppx.exe) to create an AppX package from those files on disk. Finally, the CLI can be used to create a trusted cert on your computer before we sign the new AppX pacakge. With the signed AppX package, the CLI can also deploy the package using the `Add-AppxPackage` PowerShell Cmdlet. 
+
+
+## So How Do I Release?
+Once Windows Codename Redstone (also known as the "Windows Anniversary Update") is released, you will be able to submit your AppX packages to the Windows Store. When that happens, you will sign your apps with a Microsoft Certificate - but in the meantime, this widget can also help you sign your brand new appx package with a certificate trusted by your computer.
+
