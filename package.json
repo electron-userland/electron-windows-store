@@ -37,6 +37,6 @@
     "lodash": "^4.11.1",
     "lodash.defaults": "^4.0.1",
     "multiline": "^1.0.2",
-    "path-exists": "^2.1.0"
+    "path-exists": "^3.0.0"
   }
 }
