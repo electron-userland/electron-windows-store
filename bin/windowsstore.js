@@ -6,16 +6,8 @@
 
 var program      = require('commander');
 var path         = require('path');
+var os           = require('os');
 var package      = require('../package.json');
-var ensureParams = require('../lib/params');
-var zip          = require('../lib/zip');
-var flatten      = require('../lib/flatten');
-var setup        = require('../lib/setup');
-var sign         = require('../lib/sign');
-var assets       = require('../lib/assets');
-var convert      = require('../lib/convert');
-var makeappx     = require('../lib/makeappx');
-var manifest     = require('../lib/manifest');
 
 // Ensure Node 4
 if (parseInt(process.versions.node[0], 10) < 4) {
@@ -24,6 +16,7 @@ if (parseInt(process.versions.node[0], 10) < 4) {
 
 program
     .version(package.version)
+    .option('-b, --windows-build', 'Display Windows Build information')
     .option('-i, --input-directory <path>', 'Directory containing your application')
     .option('-o, --output-directory <path>', 'Output directory for the appx')
     .option('-f, --flatten <true|false>', 'Flatten Node modules without warning', (i) => (i === 'true'))
@@ -34,6 +27,20 @@ program
     .option('-m, --manifest <manifestPath>', 'Path to a manifest, if you want to overwrite the default one')
     .option('-d, --deploy <true|false>', 'Should the app be deployed after creation?')
     .parse(process.argv);
+
+if (program.windowsBuild) {
+    return console.log(os.release());
+}
+
+var ensureParams = require('../lib/params');
+var zip          = require('../lib/zip');
+var flatten      = require('../lib/flatten');
+var setup        = require('../lib/setup');
+var sign         = require('../lib/sign');
+var assets       = require('../lib/assets');
+var convert      = require('../lib/convert');
+var makeappx     = require('../lib/makeappx');
+var manifest     = require('../lib/manifest');
 
 setup(program)
     .then(() => ensureParams(program))
