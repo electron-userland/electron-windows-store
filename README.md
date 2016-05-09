@@ -15,7 +15,7 @@ npm install -g electron-windows-store
 
 #### Supported Operating System
 
-Windows 10 Anniversary Update - Preview (Build 14316 and up) - Enterprise edition
+Windows 10 Anniversary Update - Enterprise Edition (This is build 14316 and up - as of May 2016, it's part of the latest Windows Insiders Preview)
 
 #### Required Hardware Configuration
 
@@ -27,11 +27,18 @@ Your computer must have the following minimum capabilities:
 ## How to Install?
 
 ### Prerequisites
-Before running the Electron-Windows-Store CLI, let's make sure we have all the prerequisites in place.
-- Download and follow the installation steps to install the Desktop App Converter from [here](https://www.microsoft.com/en-us/download/details.aspx?id=51691). You will get the following files: `DesktopAppConverter.zip` and `BaseImage-14316.wim`
-- Make sure you are running a Windows 10 Enterprise edition 14316 or higher (if in doubt, run `electron-windows-store -b` to display your build number).
-- Download the Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk)
-- Ensure you have Node 4.x
+Before running the Electron-Windows-Store CLI, let's make sure we have all the prerequisites in place. You will need:
+
+ * Windows 10 Anniversary Update - Enterprise Edition (This is build 14316 and up - as of May 2016, it's part of the latest Windows Insiders Preview)
+ * A machine with 64 bit (x64) processor, Hardware-Assisted Virtualization, and Second Level Address Translation (SLAT)
+ * Download the Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk)
+ * Ensure you have at least Node 4 (to check, run `node -v`)
+
+Before running the CLI for the first time, you will have to setup the "Windows Desktop App Converter". This will take a few minutes, but don't worry - you only have to do this once. Download and the Desktop App Converter from [here](https://www.microsoft.com/en-us/download/details.aspx?id=51691). You will receive two files: `DesktopAppConverter.zip` and `BaseImage-14316.wim`.
+
+1. Unzip `DesktopAppConverter.zip`. From an elevated PowerShell (opened with "run as Administrator"., ensure that your systems execution policy allows us to run everything we inted to run by calling `Set-ExecutionPolicy bypass`.
+2. Then, run the installation of the Desktop App Converter, passing in the location of the Windows .ase Image (downloaded as `BaseImage-14316.wim`), by calling `.\DesktopAppConverter.ps1 -Setup -BaseImage .\BaseImage-14316.wim`.
+3. If running the above command prompts you for a reboot, please restart your machine and run the above command again after a successful restart.
 
 ### Package Your Electron Application
 Package the application using [electron-packager](https://github.com/electron-userland/electron-packager) (or something similar). Make sure to remove node_modules that you don't need in your final application.
@@ -73,7 +80,7 @@ From an elevated PowerShell (run it "as Administrator"), run `electron-windows-s
 electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --flatten true --package-version 1.0.0.0 --package-name myelectronapp
 ```
 
-> :bulb: Note: The first time you run this tool, we need to know some settings. We will ask you only once and store your answers in your profile folder in a .electron-windows-store file. You can also provide these values when running the CLI or create a .electron-windows-store file in your profile folder.
+> :bulb: Note: The first time you run this tool, it needs to know some settings. It will ask you only once and store your answers in your profile folder in a `.electron-windows-store` file. You can also provide these values as a parameter when running the CLI.
 
 ```
 {
@@ -103,9 +110,9 @@ Here are more options for the CLI:
 ```
 
 ## What is the CLI Doing?
-The `electron-windows-store` CLI takes the packaged output of your Electron app as an input. First it flattens the node_modules in the packaged output of the Electron app. Then, it creates a zip file `app.zip` with the updated content of the packaged Electron app in the output folder you specified. With the `app.zip` file, the CLI uses the `DesktopAppConverter` utilities to convert the zip file into AppX packaged output files (including the `AppXManifest.xml` file) in the output folder you specified.
+Once executed, the tool goes to work: It accepts your Electron app as an input, flattening the `node_modules`. Then, it archives your application as `app.zip`. Using an installer and a Windows Container, the tool creates an "expanded" AppX package - including the Windows Application Manifest (`AppXManifest.xml`) as well as the virtual file system and the virtual registry inside your output folder.
 
-Once we have the AppX packaged output files, the CLI uses the Windows App Packager (MakeAppx.exe) to create an AppX package from those files on disk. Finally, the CLI can be used to create a trusted certificate on your computer before we sign the new AppX pacakge. With the signed AppX package, the CLI can also deploy the package using the `Add-AppxPackage` PowerShell Cmdlet. 
+Once we have the expanded AppX files, the tool uses the Windows App Packager (`MakeAppx.exe`) to create a single-file AppX package from those files on disk. Finally, the tool can be used to create a trusted certificate on your computer to sign the new AppX pacakge. With the signed AppX package, the CLI can also automatically install the package on your machine.
 
 ## So How Do I Release?
 Once Windows Codename Redstone (also known as the "Windows Anniversary Update") is released, you will be able to submit your AppX packages to the Windows Store. When that happens, you will sign your apps with a Microsoft Certificate - but in the meantime, this widget can also help you sign your brand new appx package with a certificate trusted by your computer.
