@@ -2,7 +2,10 @@
   "name": "electron-windows-store",
   "version": "0.1.1",
   "description": "Compile Electron Apps into Windows Store AppX packages",
-  "main": "bin/start.js",
+  "main": "bin/windowsstore.js",
+  "bin": {
+    "electron-windows-store": "bin/windowsstore.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
