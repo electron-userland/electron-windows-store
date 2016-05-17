@@ -75,7 +75,7 @@ The Desktop App Converter is capabable of running an installer and your app duri
 
 :computer: Ensure that your computer is capable of running containers: You'll need a 64 bit (x64) processor, hardware-assisted virtualization and second Level Address Translation (SLAT).
 
-:lightbulb: Before running the CLI for the first time, you will have to setup the "Windows Desktop App Converter". This will take a few minutes, but don't worry - you only have to do this once. Download and the Desktop App Converter from [here](https://www.microsoft.com/en-us/download/details.aspx?id=51691). You will receive two files: `DesktopAppConverter.zip` and `BaseImage-14316.wim`.
+:bulb: Before running the CLI for the first time, you will have to setup the "Windows Desktop App Converter". This will take a few minutes, but don't worry - you only have to do this once. Download and the Desktop App Converter from [here](https://www.microsoft.com/en-us/download/details.aspx?id=51691). You will receive two files: `DesktopAppConverter.zip` and `BaseImage-14316.wim`.
 
 1. Unzip `DesktopAppConverter.zip`. From an elevated PowerShell (opened with "run as Administrator"., ensure that your systems execution policy allows us to run everything we inted to run by calling `Set-ExecutionPolicy bypass`.
 2. Then, run the installation of the Desktop App Converter, passing in the location of the Windows .ase Image (downloaded as `BaseImage-14316.wim`), by calling `.\DesktopAppConverter.ps1 -Setup -BaseImage .\BaseImage-14316.wim`.
