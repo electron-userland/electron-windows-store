@@ -11,36 +11,22 @@ To install this command line tool, get it directly from npm:
 npm install -g electron-windows-store
 ```
 
-## System Requirements
+To turn an Electron app into an AppX package, run:
 
-#### Supported Operating System
+```
+electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --flatten true --package-version 1.0.0.0 --package-name myelectronapp
+```
 
-Windows 10 Anniversary Update - Enterprise Edition (This is build 14316 and up - as of May 2016, it's part of the latest Windows Insiders Preview)
+This tool supports two methods to create AppX packages: Either using manual file copy operations, or using Windows Containers. The first option requires only the [Windwos 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk), while the second option also requires the [Desktop App Converter](https://www.microsoft.com/en-us/download/details.aspx?id=51691).
 
-#### Required Hardware Configuration
-
-Your computer must have the following minimum capabilities:
-- 64 bit (x64) processor
-- Hardware-assisted virtualization
-- Second Level Address Translation (SLAT)
-
-## How to Install?
-
-### Prerequisites
+# Usage
 Before running the Electron-Windows-Store CLI, let's make sure we have all the prerequisites in place. You will need:
 
  * Windows 10 Anniversary Update - Enterprise Edition (This is build 14316 and up - as of May 2016, it's part of the latest Windows Insiders Preview)
- * A machine with 64 bit (x64) processor, Hardware-Assisted Virtualization, and Second Level Address Translation (SLAT)
- * Download the Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk)
- * Ensure you have at least Node 4 (to check, run `node -v`)
+ * Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk)
+ * Node 4 or above (to check, run `node -v`)
 
-Before running the CLI for the first time, you will have to setup the "Windows Desktop App Converter". This will take a few minutes, but don't worry - you only have to do this once. Download and the Desktop App Converter from [here](https://www.microsoft.com/en-us/download/details.aspx?id=51691). You will receive two files: `DesktopAppConverter.zip` and `BaseImage-14316.wim`.
-
-1. Unzip `DesktopAppConverter.zip`. From an elevated PowerShell (opened with "run as Administrator"., ensure that your systems execution policy allows us to run everything we inted to run by calling `Set-ExecutionPolicy bypass`.
-2. Then, run the installation of the Desktop App Converter, passing in the location of the Windows .ase Image (downloaded as `BaseImage-14316.wim`), by calling `.\DesktopAppConverter.ps1 -Setup -BaseImage .\BaseImage-14316.wim`.
-3. If running the above command prompts you for a reboot, please restart your machine and run the above command again after a successful restart.
-
-### Package Your Electron Application
+## Package Your Electron Application
 Package the application using [electron-packager](https://github.com/electron-userland/electron-packager) (or something similar). Make sure to remove node_modules that you don't need in your final application.
 
 The output should look roughly like this:
@@ -48,71 +34,72 @@ The output should look roughly like this:
 ├── Ghost.exe
 ├── LICENSE
 ├── content_resources_200_percent.pak
-├── content_shell.pak
-├── d3dcompiler_47.dll
-├── ffmpeg.dll
-├── icudtl.dat
-├── libEGL.dll
-├── libGLESv2.dll
-├── locales
-│   ├── am.pak
-│   ├── ar.pak
-│   ├── [...]
-├── msvcp120.dll
-├── msvcr120.dll
-├── natives_blob.bin
 ├── node.dll
 ├── pdf.dll
 ├── resources
 │   ├── app
 │   └── atom.asar
 ├── snapshot_blob.bin
-├── squirrel.exe
-├── ui_resources_200_percent.pak
-├── vccorlib120.dll
-└── xinput1_3.dll
+├── [... and more files]
 ```
 
-## Running the Basic Version
+## Convert with File Copying 
 From an elevated PowerShell (run it "as Administrator"), run `electron-windows-store` with the required parameters, passing both the input and output directories, the app's name and version, and confirmation that node_modules should be flattened. If you don't pass these parameters, we will simply ask you for them.
 
 ```
 electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --flatten true --package-version 1.0.0.0 --package-name myelectronapp
 ```
 
-> :bulb: Note: The first time you run this tool, it needs to know some settings. It will ask you only once and store your answers in your profile folder in a `.electron-windows-store` file. You can also provide these values as a parameter when running the CLI.
-
-```
-{
-  "desktopConverter": "C:\\Tools\\DesktopConverter",
-  "expandedBaseImage": "C:\\ProgramData\\Microsoft\\Windows\\Images\\BaseImage-14316\\",
-  "publisher": "CN=developmentca",
-  "windowsKit": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64",
-  "devCert": "C:\Tools\DesktopConverter\Certs\devcert.pfx"
-}
-```
-
 Here are more options for the CLI:
 
 ```
- -h, --help                                 Output usage information
- -b, --windows-build                        Output Windows Build information
- -V, --version                              Output the version number
- -i, --input-directory <path>               Directory containing your application
- -o, --output-directory <path>              Output directory for the appx
- -f, --flatten <true|false>                 Flatten Node modules without warning
- -p, --package-version <version>            Version of the app package
- -n, --package-name <name>                  Name of the app package
- -e, --package-executable <executablePath>  Path to the package executable
- -a, --assets <assetsPath>                  Path to the visual assets for the appx
- -m, --manifest <manifestPath>              Path to a manifest, if you want to overwrite the default one
- -d, --deploy <true|false>                  Should the app be deployed after creation?
+  -h, --help                                 output usage information
+  -V, --version                              output the version number
+  -c, --container-virtualization             Create package using Windows Container vir
+  -b, --windows-build                        Display Windows Build information
+  -i, --input-directory <path>               Directory containing your application
+  -o, --output-directory <path>              Output directory for the appx
+  -f, --flatten <true|false>                 Flatten Node modules without warning
+  -p, --package-version <version>            Version of the app package
+  -n, --package-name <name>                  Name of the app package
+      --package-display-name <displayName>   Dispay name of the package
+      --package-description <description>    Description of the package
+  -e, --package-executable <executablePath>  Path to the package executable
+  -a, --assets <assetsPath>                  Path to the visual assets for the appx
+  -m, --manifest <manifestPath>              Path to a manifest, if you want to overwri
+  -d, --deploy <true|false>                  Should the app be deployed after creation?
 ```
 
-## What is the CLI Doing?
+## Convert with Container Virtualization
+The Desktop App Converter is capabable of running an installer and your app during conversion inside a Windows Container. This is useful if you're not entirely sure what your application does, but requires installation of the Desktop App Converter.
+
+:computer: Ensure that your computer is capable of running containers: You'll need a 64 bit (x64) processor, hardware-assisted virtualization and second Level Address Translation (SLAT).
+
+:lightbulb: Before running the CLI for the first time, you will have to setup the "Windows Desktop App Converter". This will take a few minutes, but don't worry - you only have to do this once. Download and the Desktop App Converter from [here](https://www.microsoft.com/en-us/download/details.aspx?id=51691). You will receive two files: `DesktopAppConverter.zip` and `BaseImage-14316.wim`.
+
+1. Unzip `DesktopAppConverter.zip`. From an elevated PowerShell (opened with "run as Administrator"., ensure that your systems execution policy allows us to run everything we inted to run by calling `Set-ExecutionPolicy bypass`.
+2. Then, run the installation of the Desktop App Converter, passing in the location of the Windows .ase Image (downloaded as `BaseImage-14316.wim`), by calling `.\DesktopAppConverter.ps1 -Setup -BaseImage .\BaseImage-14316.wim`.
+3. If running the above command prompts you for a reboot, please restart your machine and run the above command again after a successful restart.
+
+Then, run `electron-windows-installer` with the `--container-virtualization` flag!
+
+#### What is the CLI Doing?
 Once executed, the tool goes to work: It accepts your Electron app as an input, flattening the `node_modules`. Then, it archives your application as `app.zip`. Using an installer and a Windows Container, the tool creates an "expanded" AppX package - including the Windows Application Manifest (`AppXManifest.xml`) as well as the virtual file system and the virtual registry inside your output folder.
 
 Once we have the expanded AppX files, the tool uses the Windows App Packager (`MakeAppx.exe`) to create a single-file AppX package from those files on disk. Finally, the tool can be used to create a trusted certificate on your computer to sign the new AppX pacakge. With the signed AppX package, the CLI can also automatically install the package on your machine.
+
+## Configuration
+:bulb: The first time you run this tool, it needs to know some settings. It will ask you only once and store your answers in your profile folder in a `.electron-windows-store` file. You can also provide these values as a parameter when running the CLI.
+
+```
+{
+  "publisher": "CN=developmentca",
+  "windowsKit": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64",
+  "devCert": "C:\Tools\DesktopConverter\Certs\devcert.pfx",
+  "desktopConverter": "C:\\Tools\\DesktopConverter",
+  "expandedBaseImage": "C:\\ProgramData\\Microsoft\\Windows\\Images\\BaseImage-14316\\"
+}
+```
 
 ## So How Do I Release?
 Once Windows Codename Redstone (also known as the "Windows Anniversary Update") is released, you will be able to submit your AppX packages to the Windows Store. When that happens, you will sign your apps with a Microsoft Certificate - but in the meantime, this widget can also help you sign your brand new appx package with a certificate trusted by your computer.
