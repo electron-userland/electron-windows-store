@@ -16,6 +16,7 @@ if (parseInt(process.versions.node[0], 10) < 4) {
 
 program
     .version(package.version)
+    .option('-c, --container-virtualization', 'Create package using Windows Container virtualization')
     .option('-b, --windows-build', 'Display Windows Build information')
     .option('-i, --input-directory <path>', 'Directory containing your application')
     .option('-o, --output-directory <path>', 'Output directory for the appx')
