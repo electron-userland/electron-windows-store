@@ -50,12 +50,12 @@ From an elevated PowerShell (run it "as Administrator"), run `electron-windows-s
 electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --flatten true --package-version 1.0.0.0 --package-name myelectronapp
 ```
 
-Here are more options for the CLI:
+These are all options for the CLI:
 
 ```
   -h, --help                                 output usage information
   -V, --version                              output the version number
-  -c, --container-virtualization             Create package using Windows Container vir
+  -c, --container-virtualization             Create package using Windows Container virtualization
   -b, --windows-build                        Display Windows Build information
   -i, --input-directory <path>               Directory containing your application
   -o, --output-directory <path>              Output directory for the appx
@@ -66,7 +66,7 @@ Here are more options for the CLI:
       --package-description <description>    Description of the package
   -e, --package-executable <executablePath>  Path to the package executable
   -a, --assets <assetsPath>                  Path to the visual assets for the appx
-  -m, --manifest <manifestPath>              Path to a manifest, if you want to overwri
+  -m, --manifest <manifestPath>              Path to a manifest, if you want to be overwritten
   -d, --deploy <true|false>                  Should the app be deployed after creation?
 ```
 
