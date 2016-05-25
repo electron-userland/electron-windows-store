@@ -7,6 +7,7 @@
 var program      = require('commander');
 var path         = require('path');
 var os           = require('os');
+var chalk        = require('chalk');
 var package      = require('../package.json');
 
 // Ensure Node 4
@@ -54,4 +55,5 @@ setup(program)
     .then(() => manifest(program))
     .then(() => makeappx(program))
     .then(() => sign.signAppx(program))
+    .then(() => console.log(chalk.bold.green('All done!')))
     .catch(e => {console.log(e); console.log(e.stack);});
