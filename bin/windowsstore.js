@@ -45,6 +45,7 @@ var assets       = require('../lib/assets');
 var convert      = require('../lib/convert');
 var makeappx     = require('../lib/makeappx');
 var manifest     = require('../lib/manifest');
+var deploy       = require('../lib/deploy');
 
 setup(program)
     .then(() => ensureParams(program))
@@ -55,5 +56,6 @@ setup(program)
     .then(() => manifest(program))
     .then(() => makeappx(program))
     .then(() => sign.signAppx(program))
+    .then(() => deploy(program))
     .then(() => console.log(chalk.bold.green('All done!')))
     .catch(e => {console.log(e); console.log(e.stack);});
