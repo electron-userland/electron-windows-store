@@ -1,6 +1,6 @@
 {
   "name": "electron-windows-store",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Compile Electron Apps into Windows Store AppX packages",
   "main": "bin/windowsstore.js",
   "bin": {
