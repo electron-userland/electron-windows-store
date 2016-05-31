@@ -91,11 +91,11 @@ Once we have the expanded AppX files, the tool uses the Windows App Packager (`M
 ## Configuration
 :bulb: The first time you run this tool, it needs to know some settings. It will ask you only once and store your answers in your profile folder in a `.electron-windows-store` file. You can also provide these values as a parameter when running the CLI.
 
-```
+```json
 {
   "publisher": "CN=developmentca",
   "windowsKit": "C:\\Program Files (x86)\\Windows Kits\\10\\bin\\x64",
-  "devCert": "C:\Tools\DesktopConverter\Certs\devcert.pfx",
+  "devCert": "C:\\Tools\\DesktopConverter\\Certs\\devcert.pfx",
   "desktopConverter": "C:\\Tools\\DesktopConverter",
   "expandedBaseImage": "C:\\ProgramData\\Microsoft\\Windows\\Images\\BaseImage-14316\\"
 }
