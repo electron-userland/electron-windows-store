@@ -68,6 +68,11 @@ These are all options for the CLI:
   -a, --assets <assetsPath>                  Path to the visual assets for the appx
   -m, --manifest <manifestPath>              Path to a manifest, if you want to be overwritten
   -d, --deploy <true|false>                  Should the app be deployed after creation?
+  --publisher <publisher>                    Publisher to use (example: CN=developmentca)
+  --windows-kit <windows-kit>                Path to the Windows Kit bin folder
+  --dev-cert <dev-cert>                      Path to the developer certificate to use
+  --desktop-converter <desktop-converter>    Path to the desktop converter tools
+  --expaned-base-image <base-image>          Path to the expanded base image
 ```
 
 ## Convert with Container Virtualization
