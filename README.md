@@ -86,7 +86,7 @@ The Desktop App Converter is capabable of running an installer and your app duri
 2. Then, run the installation of the Desktop App Converter, passing in the location of the Windows .ase Image (downloaded as `BaseImage-14316.wim`), by calling `.\DesktopAppConverter.ps1 -Setup -BaseImage .\BaseImage-14316.wim`.
 3. If running the above command prompts you for a reboot, please restart your machine and run the above command again after a successful restart.
 
-Then, run `electron-windows-installer` with the `--container-virtualization` flag!
+Then, run `electron-windows-store` with the `--container-virtualization` flag!
 
 #### What is the CLI Doing?
 Once executed, the tool goes to work: It accepts your Electron app as an input, flattening the `node_modules`. Then, it archives your application as `app.zip`. Using an installer and a Windows Container, the tool creates an "expanded" AppX package - including the Windows Application Manifest (`AppXManifest.xml`) as well as the virtual file system and the virtual registry inside your output folder.
