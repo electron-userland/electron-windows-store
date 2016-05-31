@@ -17,7 +17,7 @@ To turn an Electron app into an AppX package, run:
 electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --flatten true --package-version 1.0.0.0 --package-name myelectronapp
 ```
 
-This tool supports two methods to create AppX packages: Either using manual file copy operations, or using Windows Containers. The first option requires only the [Windwos 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk), while the second option also requires the [Desktop App Converter](https://www.microsoft.com/en-us/download/details.aspx?id=51691).
+This tool supports two methods to create AppX packages: Either using manual file copy operations, or using Windows Containers. The first option requires only the [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk), while the second option also requires the [Desktop App Converter](https://www.microsoft.com/en-us/download/details.aspx?id=51691).
 
 # Usage
 Before running the Electron-Windows-Store CLI, let's make sure we have all the prerequisites in place. You will need:
