@@ -73,6 +73,8 @@ These are all options for the CLI:
   --dev-cert <dev-cert>                      Path to the developer certificate to use
   --desktop-converter <desktop-converter>    Path to the desktop converter tools
   --expaned-base-image <base-image>          Path to the expanded base image
+  --makeappx-params <params>                 Additional parameters for Make-AppXPackage (example: --makeappx-params "/l","/d")
+  --signtool-params <params>                 Additional parameters for signtool.exe (example: --makeappx-params "/l","/d")
 ```
 
 ## Convert with Container Virtualization
