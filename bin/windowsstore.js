@@ -60,7 +60,7 @@ var deploy = require('../lib/deploy')
 
 setup(program)
   .then(() => ensureParams(program))
-  .then(() => flatten(program.inputDirectory, program.flatten))
+  .then(() => flatten(program))
   .then(() => zip(program))
   .then(() => convert(program))
   .then(() => assets(program))
