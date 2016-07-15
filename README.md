@@ -108,6 +108,9 @@ Once we have the expanded AppX files, the tool uses the Windows App Packager (`M
 }
 ```
 
+## Using all the fancy Windows APIs
+You can pair up your Electron app with a little invisible UWP side-kick, enabling your Electron app to call all WinRT APIs. Check out [an example over here](https://github.com/felixrieseberg/electron-uwp-background).
+
 ## So How Do I Release?
 Once Windows Codename Redstone (also known as the "Windows Anniversary Update") is released, you will be able to submit your AppX packages to the Windows Store. When that happens, you will sign your apps with a Microsoft Certificate - but in the meantime, this widget can also help you sign your brand new appx package with a certificate trusted by your computer.
 
