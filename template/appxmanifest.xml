@@ -25,7 +25,7 @@
   <Applications>
     <Application Id="${packageName}" Executable="${packageExecutable}" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements
-       BackgroundColor="#464646"
+       BackgroundColor="${packageBackgroundColor}"
        DisplayName="${packageDisplayName}"
        Square150x150Logo="assets\SampleAppx.150x150.png"
        Square44x44Logo="assets\SampleAppx.44x44.png"

@@ -43,7 +43,7 @@ The output should look roughly like this:
 ├── [... and more files]
 ```
 
-## Convert with File Copying 
+## Convert with File Copying
 From an elevated PowerShell (run it "as Administrator"), run `electron-windows-store` with the required parameters, passing both the input and output directories, the app's name and version, and confirmation that node_modules should be flattened. If you don't pass these parameters, we will simply ask you for them.
 
 ```
@@ -64,6 +64,7 @@ These are all options for the CLI:
   -n, --package-name <name>                  Name of the app package
       --package-display-name <displayName>   Dispay name of the package
       --package-description <description>    Description of the package
+      --package-background-color <color>     Background color for the app icon (example: #464646)
   -e, --package-executable <executablePath>  Path to the package executable
   -a, --assets <assetsPath>                  Path to the visual assets for the appx
   -m, --manifest <manifestPath>              Path to a manifest, if you want to be overwritten
