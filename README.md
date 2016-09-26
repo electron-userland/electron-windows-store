@@ -11,6 +11,12 @@ To install this command line tool, get it directly from npm:
 npm install -g electron-windows-store
 ```
 
+Then, configure your PowerShell:
+
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+```
+
 To turn an Electron app into an AppX package, run:
 
 ```
