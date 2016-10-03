@@ -15,6 +15,9 @@ If (-Not (Test-path $source)) {
 }
 
 $flattenbin = (get-item $PSScriptRoot).parent.FullName + '\node_modules\flatten-packages\bin\flatten'
+If (!(Test-Path $flattenbin)) {
+    $flattenbin = (get-item $PSScriptRoot).parent.FullName + '\..\flatten-packages\bin\flatten'
+}
 
 function flatMe([string]$path){
     if (!$path.EndsWith('\')) {
