@@ -118,5 +118,8 @@ Once we have the expanded AppX files, the tool uses the Windows App Packager (`M
 ## Using all the fancy Windows APIs
 You can pair up your Electron app with a little invisible UWP side-kick, enabling your Electron app to call all WinRT APIs. Check out [an example over here](https://github.com/felixrieseberg/electron-uwp-background).
 
+## Devices
+The compiled AppX package still contains a win32 executable - and will therefore not run on Xbox, HoloLens, or Phones.
+
 ## License
 Licensed using the MIT License (MIT); Copyright (c) Microsoft Corporation. For more information, please see [LICENSE](LICENSE).
