@@ -94,17 +94,17 @@ const convertToWindowsStore = require('electron-windows-store')
 
 convertToWindowsStore({
    containerVirtualization: false,
-   inputDirectory: 'C:\\input\',
-   outputDirectory: 'C:\\output\',
-   flatten: false
+   inputDirectory: 'C:\\input\\',
+   outputDirectory: 'C:\\output\\',
+   flatten: false,
    packageVersion: '1.0.0.0',
    packageName: 'Ghost',
    packageDisplayName: 'Ghost Desktop',
    packageDescription: 'Ghost for Desktops',
    packageExecutable: 'app/Ghost.exe',
-   assets: 'C:\\assets\',
+   assets: 'C:\\assets\\',
    manifest: 'C:\\appxmanifest.xml',
-   deploy: false
+   deploy: false,
    publisher: 'CN=developmentca',
    windowsKit: 'C:\\windowskit',
    devCert: 'C:\\devcert.pfx',
