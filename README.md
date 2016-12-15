@@ -86,6 +86,35 @@ These are all options for the CLI:
   --signtool-params <params>                 Additional parameters for signtool.exe (example: --makeappx-params "/l","/d")
 ```
 
+## Programmatic Usage
+You can call this package directly. All options correspond to the CLI options and are equally optional.
+
+```js
+const convertToWindowsStore = require('electron-windows-store')
+
+convertToWindowsStore({
+   containerVirtualization: false,
+   inputDirectory: 'C:\\input\',
+   outputDirectory: 'C:\\output\',
+   flatten: false
+   packageVersion: '1.0.0.0',
+   packageName: 'Ghost',
+   packageDisplayName: 'Ghost Desktop',
+   packageDescription: 'Ghost for Desktops',
+   packageExecutable: 'app/Ghost.exe',
+   assets: 'C:\\assets\',
+   manifest: 'C:\\appxmanifest.xml',
+   deploy: false
+   publisher: 'CN=developmentca',
+   windowsKit: 'C:\\windowskit',
+   devCert: 'C:\\devcert.pfx',
+   desktopConverter: 'C:\\desktop-converter-tools',
+   expanedBaseImage: 'C:\\base-image.wim',
+   makeappxParams: ['/l'],
+   signtoolParams: ['/p']
+})
+```
+
 ## Convert with Container Virtualization
 The Desktop App Converter is capabable of running an installer and your app during conversion inside a Windows Container. This is useful if you're not entirely sure what your application does, but requires installation of the Desktop App Converter.
 
