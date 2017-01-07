@@ -42,7 +42,7 @@ describe('MakeAppX', () => {
           const expectedScript = path.join(programMock.windowsKit, 'makeappx.exe')
           const expectedOutput = path.join(programMock.outputDirectory, 'testapp.appx')
           const expectedInput = path.join(programMock.outputDirectory, 'pre-appx')
-          const expectedParams = ['pack', '/d', expectedInput, '/p', expectedOutput]
+          const expectedParams = ['pack', '/d', expectedInput, '/p', expectedOutput, '/o']
 
           passedProcess.should.equal(expectedScript)
           passedArgs.should.deep.equal(expectedParams)
@@ -68,7 +68,7 @@ describe('MakeAppX', () => {
           const expectedScript = path.join(programMock.windowsKit, 'makeappx.exe')
           const expectedOutput = path.join(programMock.outputDirectory, 'testapp.appx')
           const expectedInput = path.join(programMock.outputDirectory, 'pre-appx')
-          const expectedParams = ['pack', '/d', expectedInput, '/p', expectedOutput, '/l']
+          const expectedParams = ['pack', '/d', expectedInput, '/p', expectedOutput, '/o', '/l']
 
           passedProcess.should.equal(expectedScript)
           passedArgs.should.deep.equal(expectedParams)
@@ -94,7 +94,7 @@ describe('MakeAppX', () => {
           const expectedScript = path.join(programMock.windowsKit, 'makeappx.exe')
           const expectedOutput = path.join(programMock.outputDirectory, 'testapp.appx')
           const expectedInput = path.join(programMock.outputDirectory, 'pre-appx')
-          const expectedParams = ['pack', '/d', expectedInput, '/p', expectedOutput]
+          const expectedParams = ['pack', '/d', expectedInput, '/p', expectedOutput, '/o']
 
           passedProcess.should.equal(expectedScript)
           passedArgs.should.deep.equal(expectedParams)
