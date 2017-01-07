@@ -84,6 +84,7 @@ These are all options for the CLI:
   --expaned-base-image <base-image>          Path to the expanded base image
   --makeappx-params <params>                 Additional parameters for Make-AppXPackage (example: --makeappx-params "/l","/d")
   --signtool-params <params>                 Additional parameters for signtool.exe (example: --makeappx-params "/l","/d")
+  --verbose <true|false>                     Enable debugging (similar to setting a DEBUG=electron-windows-store environment variable)
 ```
 
 ## Programmatic Usage

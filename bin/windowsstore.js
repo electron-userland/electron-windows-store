@@ -19,6 +19,9 @@ function list (val) {
   return val.split(',')
 }
 
+// Set global indicating use as cli tool
+process.env.IS_CLI_USAGE = true
+
 program
   .version(pack.version)
   .option('-c, --container-virtualization', 'Create package using Windows Container virtualization')
@@ -42,10 +45,16 @@ program
   .option('--expaned-base-image <base-image>', 'Path to the expanded base image')
   .option('--makeappx-params <params>', 'Additional parameters for Make-AppXPackage (example: --makeappx-params "/l","/d")', list)
   .option('--signtool-params <params>', 'Additional parameters for signtool.exe (example: --makeappx-params "/l","/d")', list)
+  .option('--verbose <true|false>', 'Enable debug mode')
   .parse(process.argv)
 
 if (program.windowsBuild) {
   console.log(os.release())
+}
+
+if (program.verbose) {
+  var debug = process.env.DEBUG || ''
+  process.env.DEBUG = 'electron-windows-store,' + debug
 }
 
 var ensureParams = require('../lib/params')
