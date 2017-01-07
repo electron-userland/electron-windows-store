@@ -19,9 +19,6 @@ function list (val) {
   return val.split(',')
 }
 
-// Set global indicating use as cli tool
-process.env.IS_CLI_USAGE = true
-
 program
   .version(pack.version)
   .option('-c, --container-virtualization', 'Create package using Windows Container virtualization')
