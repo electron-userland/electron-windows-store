@@ -36,6 +36,7 @@ program
   .option('-m, --manifest <manifestPath>', 'Path to a manifest, if you want to overwrite the default one')
   .option('-d, --deploy <true|false>', 'Should the app be deployed after creation?')
   .option('--publisher <publisher>', 'Publisher to use (example: CN=developmentca)')
+  .option('--publisher-display-name <publisherDisplayName', 'Publisher display name to use')
   .option('--windows-kit <windows-kit>', 'Path to the Windows Kit bin folder')
   .option('--dev-cert <dev-cert>', 'Path to the developer certificate to use')
   .option('--desktop-converter <desktop-converter>', 'Path to the desktop converter tools')

@@ -9,7 +9,7 @@
     Version="${packageVersion}" />
   <Properties>
     <DisplayName>${packageDisplayName}</DisplayName>
-    <PublisherDisplayName>Reserved</PublisherDisplayName>
+    <PublisherDisplayName>${publisherDisplayName}</PublisherDisplayName>
     <Description>No description entered</Description>
     <Logo>assets\SampleAppx.50x50.png</Logo>
   </Properties>
