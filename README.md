@@ -89,7 +89,7 @@ These are all options for the CLI:
 ```
 
 ## Programmatic Usage
-You can call this package directly. All options correspond to the CLI options and are equally optional.
+You can call this package directly. All options correspond to the CLI options and are equally optional. There is one exception: You can provide a `finalSay` function, which will be executed right before `makeappx.exe` is being called. This allows you to modify the output folder right before we turn it into a package.
 
 ```js
 const convertToWindowsStore = require('electron-windows-store')
@@ -113,7 +113,10 @@ convertToWindowsStore({
    desktopConverter: 'C:\\desktop-converter-tools',
    expanedBaseImage: 'C:\\base-image.wim',
    makeappxParams: ['/l'],
-   signtoolParams: ['/p']
+   signtoolParams: ['/p'],
+   finalSay: function () {
+     return new Promise((resolve, reject) => resolve())
+   }
 })
 ```
 
