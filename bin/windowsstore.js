@@ -44,6 +44,8 @@ program
   .option('--expaned-base-image <base-image>', 'Path to the expanded base image')
   .option('--makeappx-params <params>', 'Additional parameters for Make-AppXPackage (example: --makeappx-params "/l","/d")', list)
   .option('--signtool-params <params>', 'Additional parameters for signtool.exe (example: --makeappx-params "/l","/d")', list)
+  .option('--create-config-params <params>', 'Additional parameters for makepri.exe "createconfig" (example: --create-config-params "/l","/d")', list)
+  .option('--create-pri-params <params>', 'Additional parameters for makepri.exe "new" (example: --create-pri-params "/l","/d")', list)
   .option('--verbose <true|false>', 'Enable debug mode')
   .parse(process.argv)
 
