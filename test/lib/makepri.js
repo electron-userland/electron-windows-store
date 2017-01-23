@@ -32,7 +32,8 @@ describe('Makepri', () => {
         outputDirectory: '/fakepath/to/output',
         windowsKit: '/fakepath/to/windows/kit/bin',
         packageName: 'testapp',
-        flatten: true
+        flatten: true,
+        makePri: true
       }
 
       mockery.registerMock('child_process', cpMock)
@@ -56,7 +57,8 @@ describe('Makepri', () => {
         outputDirectory: '/fakepath/to/output',
         windowsKit: '/fakepath/to/windows/kit/bin',
         packageName: 'testapp',
-        flatten: true
+        flatten: true,
+        makePri: true
       }
 
       mockery.registerMock('child_process', cpMock)
