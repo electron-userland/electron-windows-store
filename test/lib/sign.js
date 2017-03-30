@@ -10,6 +10,19 @@ const utils = require('../../lib/utils')
 
 describe('Sign', () => {
   const tmpDir = path.join(require('os').tmpdir(), 'electron-windows-store-cert-test')
+
+  let passedArgs = []
+  let passedProcess = []
+
+  const cpMock = {
+    spawn(_process, _args) {
+      passedProcess.push(_process)
+      passedArgs.push(_args)
+
+      return new ChildProcessMock()
+    }
+  }
+
   before(() => {
     fs.ensureDirSync(tmpDir)
   })
@@ -18,22 +31,10 @@ describe('Sign', () => {
     fs.removeSync(tmpDir)
   })
 
-  const cpMock = {
-    spawn(_process, _args) {
-      passedProcess = _process
-      passedArgs = _args
-
-      return new ChildProcessMock()
-    }
-  }
-
-  let passedArgs
-  let passedProcess
-
   afterEach(() => {
     mockery.deregisterAll()
-    passedArgs = undefined
-    passedProcess = undefined
+    passedArgs = []
+    passedProcess = []
   })
 
   describe('signappx()', () => {
@@ -55,8 +56,9 @@ describe('Sign', () => {
           const expectedAppx = path.join(programMock.outputDirectory, `${programMock.packageName}.appx`)
           const expectedParams = ['sign', '-f', expectedPfxFile, '-fd', 'SHA256', '-v', expectedAppx]
 
-          passedProcess.should.equal(expectedScript)
-          passedArgs.should.deep.equal(expectedParams)
+          passedProcess.length.should.equal(1)
+          passedProcess[0].should.equal(expectedScript)
+          passedArgs[0].should.deep.equal(expectedParams)
           done()
         })
     })
@@ -66,6 +68,29 @@ describe('Sign', () => {
       return sign.signAppx(programMock).should.be.rejected
     })
   })
+
+  describe('makeCert()', () => {
+    it('should not attempt to import certificate when install === false', function (done) {
+      mockery.registerMock('child_process', cpMock)
+
+      sign.makeCert({
+        publisherName: 'CN=Test',
+        certFilePath: tmpDir,
+        install: false,
+        program: {
+          windowsKit: '/fake/kit'
+        }
+      })
+      .then(() => {
+        passedArgs.every((args) => {
+          return args.every(arg => arg.indexOf('Import-PfxCertificate') === -1)
+        }).should.equal(true)
+        done()
+      })
+      .catch(() => {})
+    })
+  })
+
 
   describe('isValidPublisherName()', () => {
     const windowsSdkPath = process.arch === 'x64' ?
