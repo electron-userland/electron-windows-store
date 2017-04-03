@@ -11,9 +11,9 @@ describe('Manifest', () => {
         manifest: '/fakepath/to/manifest'
       }
       const fsMock = {
-        copy: function (source, destination, cb) {          
+        copy: function (source, destination, cb) {
           const expectedSource = path.normalize(programMock.manifest)
-          const expectedDestination = path.join(programMock.outputDirectory, 'pre-appx', 'AppxManifest.xml')
+          const expectedDestination = path.join(programMock.outputDirectory, 'pre-appx', 'AppXManifest.xml')
 
           source.should.equal(expectedSource)
           destination.should.equal(expectedDestination)

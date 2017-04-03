@@ -108,7 +108,7 @@ convertToWindowsStore({
    packageDescription: 'Ghost for Desktops',
    packageExecutable: 'app/Ghost.exe',
    assets: 'C:\\assets\\',
-   manifest: 'C:\\appxmanifest.xml',
+   manifest: 'C:\\AppXManifest.xml',
    deploy: false,
    publisher: 'CN=developmentca',
    windowsKit: 'C:\\windowskit',
