@@ -5,6 +5,8 @@ Electron-Windows-Store: A CLI that takes the packaged output of your Electron ap
 
 > :warning: If you want to submit your package to the Windows Store, please sign up [for the Desktop Bridge Program](https://developer.microsoft.com/de-de/windows/projects/campaigns/desktop-bridge). Microsoft will currently not accept your packages if you have not done so.
 
+> :warning: The resulting AppX is not currently compatible with Assigned Access for use as a kiosk.
+
 ![](https://cloud.githubusercontent.com/assets/1426799/15042115/3471f6a0-12b9-11e6-91b4-80f25ec1d0b8.jpg)
 
 To install this command line tool, get it directly from npm:
