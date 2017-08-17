@@ -31,7 +31,7 @@ This tool supports two methods to create AppX packages: Either using manual file
 Before running the Electron-Windows-Store CLI, let's make sure we have all the prerequisites in place. You will need:
 
  * Windows 10 Anniversary Update - Enterprise Edition (This is build 14316 and up - as of May 2016, it's part of the latest Windows Insiders Preview)
- * Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk) (the lastest version might not include all the tools needed, take a look at [the archives](https://developer.microsoft.com/fr-fr/windows/downloads/sdk-archive))
+ * Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk) (the lastest version might not include all the tools needed, take a look at [the archives](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive))
  * Node 4 or above (to check, run `node -v`)
 
 ## Package Your Electron Application
