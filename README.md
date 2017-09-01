@@ -84,6 +84,7 @@ These are all options for the CLI:
   --make-pri <true|false>                    Use makepri.exe (you don't need to unless you know you do)
   --windows-kit <windows-kit>                Path to the Windows Kit bin folder
   --dev-cert <dev-cert>                      Path to the developer certificate to use
+  --cert-pass <cert-pass>                    Password to use when signing the application (only necessary if a p12 certication is used)
   --desktop-converter <desktop-converter>    Path to the desktop converter tools
   --expanded-base-image <base-image>         Path to the expanded base image
   --makeappx-params <params>                 Additional parameters for Make-AppXPackage (example: --makeappx-params "/l","/d")
@@ -115,6 +116,7 @@ convertToWindowsStore({
    publisher: 'CN=developmentca',
    windowsKit: 'C:\\windowskit',
    devCert: 'C:\\devcert.pfx',
+   certPass: 'abcd',
    desktopConverter: 'C:\\desktop-converter-tools',
    expandedBaseImage: 'C:\\base-image.wim',
    makeappxParams: ['/l'],
