@@ -40,7 +40,7 @@ describe('Makepri', () => {
 
       require('../../lib/makepri')(programMock)
         .then(() => {
-          const exptectedTarget = path.join(programMock.outputDirectory, 'pre-appx', 'priconfig.xml')
+          const exptectedTarget = path.join('pre-appx', 'priconfig.xml')
           const expectedScript = path.join(programMock.windowsKit, 'makepri.exe')
           const expectedParams = ['createconfig', '/cf', exptectedTarget, '/dq', 'en-US']
 
@@ -65,10 +65,11 @@ describe('Makepri', () => {
 
       require('../../lib/makepri')(programMock)
         .then(() => {
-          const expectedOutput = path.join(programMock.outputDirectory, 'pre-appx')
-          const exptectedTarget = path.join(programMock.outputDirectory, 'pre-appx', 'priconfig.xml')
+          const expectedProject = 'pre-appx'
+          const exptectedTarget = path.join('pre-appx', 'priconfig.xml')
+          const expectedOutput = path.join('pre-appx', 'resources.pri')
           const expectedScript = path.join(programMock.windowsKit, 'makepri.exe')
-          const expectedParams = ['new', '/pr', expectedOutput, '/cf', exptectedTarget]
+          const expectedParams = ['new', '/pr', expectedProject, '/cf', exptectedTarget, '/of', expectedOutput]
 
           spawnedProcesses[1].passedProcess.should.equal(expectedScript)
           spawnedProcesses[1].passedArgs.should.deep.equal(expectedParams)
