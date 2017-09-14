@@ -79,6 +79,7 @@ These are all options for the CLI:
   -a, --assets <assetsPath>                  Path to the visual assets for the appx
   -m, --manifest <manifestPath>              Path to a manifest, if you want to be overwritten
   -d, --deploy <true|false>                  Should the app be deployed after creation?
+  --identity-name <name>                     Name for identity
   --publisher <publisher>                    Publisher to use (example: CN=developmentca)
   --publisher-display-name <publisherDisplayName> Publisher display name to use
   --make-pri <true|false>                    Use makepri.exe (you don't need to unless you know you do)
