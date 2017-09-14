@@ -63,6 +63,31 @@ describe('Sign', () => {
         })
     })
 
+    it('should pass along the certificate password', function () {
+      const programMock = {
+        inputDirectory: '/fakepath/to/input',
+        outputDirectory: '/fakepath/to/output',
+        windowsKit: '/fakepath/to/windows/kit/bin',
+        packageName: 'testapp',
+        devCert: 'fakepath/to/devcert.p12',
+        certPass: '12345'
+      }
+
+      mockery.registerMock('child_process', cpMock)
+
+      return sign.signAppx(programMock)
+        .then(() => {
+          const expectedScript = path.join(programMock.windowsKit, 'signtool.exe')
+          const expectedPfxFile = programMock.devCert
+          const expectedAppx = path.join(programMock.outputDirectory, `${programMock.packageName}.appx`)
+          const expectedParams = ['sign', '-f', expectedPfxFile, '-fd', 'SHA256', '-v', '-p', '12345', expectedAppx]
+
+          passedProcess.length.should.equal(1)
+          passedProcess[0].should.equal(expectedScript)
+          passedArgs[0].should.deep.equal(expectedParams)
+        })
+    })
+
     it('should reject if no certificate is present', function () {
       const programMock = {}
       return sign.signAppx(programMock).should.be.rejected

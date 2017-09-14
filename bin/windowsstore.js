@@ -40,6 +40,7 @@ program
   .option('--publisher-display-name <publisherDisplayName>', 'Publisher display name to use')
   .option('--windows-kit <windows-kit>', 'Path to the Windows Kit bin folder')
   .option('--dev-cert <dev-cert>', 'Path to the developer certificate to use')
+  .option('--cert-pass <cert-pass>', 'Certification password')
   .option('--desktop-converter <desktop-converter>', 'Path to the desktop converter tools')
   .option('--expanded-base-image <base-image>', 'Path to the expanded base image')
   .option('--make-pri <true|false>', 'Use makepri.exe (you don\'t need to unless you know you do)', (i) => (i === 'true'))
