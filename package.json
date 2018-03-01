@@ -23,7 +23,8 @@
   ],
   "engineStrict": true,
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=4.0.0",
+    "npm": ">=4.4.0"
   },
   "author": "",
   "license": "MIT",
@@ -35,7 +36,6 @@
     "chalk": "^2.1.0",
     "commander": "^2.11.0",
     "debug": "^2.6.3",
-    "flatten-packages": "^0.1.4",
     "fs-extra": "^4.0.1",
     "inquirer": "^3.2.3",
     "lodash.defaults": "^4.2.0",
