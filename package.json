@@ -32,14 +32,14 @@
   },
   "homepage": "https://github.com/felixrieseberg/electron-windows-store#readme",
   "dependencies": {
-    "chalk": "^2.1.0",
-    "commander": "^2.11.0",
-    "debug": "^2.6.3",
+    "chalk": "^2.3.1",
+    "commander": "^2.14.1",
+    "debug": "^3.1.0",
     "flatten-packages": "^0.1.4",
     "fs-extra": "^4.0.1",
     "inquirer": "^3.2.3",
     "lodash.defaults": "^4.2.0",
-    "lodash.merge": "^4.6.0",
+    "lodash.merge": "^4.6.1",
     "multiline": "^1.0.2",
     "path-exists": "^3.0.0"
   },
@@ -48,6 +48,6 @@
     "chai-as-promised": "^7.1.1",
     "mocha": "^3.5.3",
     "mockery": "^2.1.0",
-    "standard": "^10.0.3"
+    "standard": "^11.0.0"
   }
 }
