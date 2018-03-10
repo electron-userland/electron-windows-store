@@ -40,7 +40,6 @@
     "inquirer": "^3.2.3",
     "lodash.defaults": "^4.2.0",
     "lodash.merge": "^4.6.1",
-    "multiline": "^1.0.2",
     "path-exists": "^3.0.0"
   },
   "devDependencies": {

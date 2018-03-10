@@ -34,3 +34,5 @@ node_modules
 
 # Vim
 *.swp
+
+package-lock.json
