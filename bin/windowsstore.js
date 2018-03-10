@@ -60,29 +60,9 @@ if (program.verbose) {
   process.env.DEBUG = 'electron-windows-store,' + debug
 }
 
-var ensureParams = require('../lib/params')
-var zip = require('../lib/zip')
-var flatten = require('../lib/flatten')
-var setup = require('../lib/setup')
-var sign = require('../lib/sign')
-var assets = require('../lib/assets')
-var convert = require('../lib/convert')
-var makeappx = require('../lib/makeappx')
-var manifest = require('../lib/manifest')
-var deploy = require('../lib/deploy')
-var makepri = require('../lib/makepri')
+var _convertToStore = require('../lib/index')
 
-setup(program)
-  .then(() => ensureParams(program))
-  .then(() => flatten(program))
-  .then(() => zip(program))
-  .then(() => convert(program))
-  .then(() => assets(program))
-  .then(() => manifest(program))
-  .then(() => makepri(program))
-  .then(() => makeappx(program))
-  .then(() => sign.signAppx(program))
-  .then(() => deploy(program))
+_convertToStore(program)
   .then(() => console.log(chalk.bold.green('All done!')))
   .catch(e => {
     console.log(e)
