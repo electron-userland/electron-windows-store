@@ -25,7 +25,6 @@ program
   .option('-b, --windows-build', 'Display Windows Build information')
   .option('-i, --input-directory <path>', 'Directory containing your application')
   .option('-o, --output-directory <path>', 'Output directory for the appx')
-  .option('-f, --flatten <true|false>', 'Flatten Node modules without warning', (i) => (i === 'true'))
   .option('-p, --package-version <version>', 'Version of the app package')
   .option('-n, --package-name <name>', 'Name of the app package')
   .option('--identity-name <name>', 'Name for identity')
@@ -62,7 +61,6 @@ if (program.verbose) {
 
 var ensureParams = require('../lib/params')
 var zip = require('../lib/zip')
-var flatten = require('../lib/flatten')
 var setup = require('../lib/setup')
 var sign = require('../lib/sign')
 var assets = require('../lib/assets')
@@ -74,7 +72,6 @@ var makepri = require('../lib/makepri')
 
 setup(program)
   .then(() => ensureParams(program))
-  .then(() => flatten(program))
   .then(() => zip(program))
   .then(() => convert(program))
   .then(() => assets(program))

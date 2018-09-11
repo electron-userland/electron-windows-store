@@ -32,7 +32,6 @@ describe('Makepri', () => {
         outputDirectory: '/fakepath/to/output',
         windowsKit: '/fakepath/to/windows/kit/bin',
         packageName: 'testapp',
-        flatten: true,
         makePri: true
       }
 
@@ -57,7 +56,6 @@ describe('Makepri', () => {
         outputDirectory: '/fakepath/to/output',
         windowsKit: '/fakepath/to/windows/kit/bin',
         packageName: 'testapp',
-        flatten: true,
         makePri: true
       }
 

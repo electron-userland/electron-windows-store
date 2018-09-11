@@ -24,7 +24,7 @@ Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
 To turn an Electron app into an AppX package, run:
 
 ```
-electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --flatten true --package-version 1.0.0.0 --package-name myelectronapp
+electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --package-version 1.0.0.0 --package-name myelectronapp
 ```
 
 This tool supports two methods to create AppX packages: Either using manual file copy operations, or using Windows Containers. The first option requires only the [Windows 10 SDK](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk), while the second option also requires the [Desktop App Converter](https://docs.microsoft.com/en-us/windows/uwp/porting/desktop-to-uwp-run-desktop-app-converter).
@@ -54,10 +54,10 @@ The output should look roughly like this:
 ```
 
 ## Convert with File Copying
-**From an elevated PowerShell (run it "as Administrator")**, run `electron-windows-store` with the required parameters, passing both the input and output directories, the app's name and version, and confirmation that node_modules should be flattened. If you don't pass these parameters, we will simply ask you for them.
+**From an elevated PowerShell (run it "as Administrator")**, run `electron-windows-store` with the required parameters, passing both the input and output directories, the app's name and version. If you don't pass these parameters, we will simply ask you for them.
 
 ```
-electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --flatten true --package-version 1.0.0.0 --package-name myelectronapp
+electron-windows-store --input-directory C:\myelectronapp  --output-directory C:\output\myelectronapp --package-version 1.0.0.0 --package-name myelectronapp
 ```
 
 These are all options for the CLI:
@@ -69,7 +69,6 @@ These are all options for the CLI:
   -b, --windows-build                        Display Windows Build information
   -i, --input-directory <path>               Directory containing your application
   -o, --output-directory <path>              Output directory for the appx
-  -f, --flatten <true|false>                 Flatten Node modules without warning
   -p, --package-version <version>            Version of the app package
   -n, --package-name <name>                  Name of the app package
       --package-display-name <displayName>   Display name of the package
@@ -105,7 +104,6 @@ convertToWindowsStore({
    containerVirtualization: false,
    inputDirectory: 'C:\\input\\',
    outputDirectory: 'C:\\output\\',
-   flatten: false,
    packageVersion: '1.0.0.0',
    packageName: 'Ghost',
    packageDisplayName: 'Ghost Desktop',
@@ -145,7 +143,7 @@ The Desktop App Converter is capable of running an installer and your app during
 Then, run `electron-windows-store` with the `--container-virtualization` flag!
 
 #### What is the CLI Doing?
-Once executed, the tool goes to work: It accepts your Electron app as an input, flattening the `node_modules`. Then, it archives your application as `app.zip`. Using an installer and a Windows Container, the tool creates an "expanded" AppX package - including the Windows Application Manifest (`AppXManifest.xml`) as well as the virtual file system and the virtual registry inside your output folder.
+Once executed, the tool goes to work: It accepts your Electron app as an input. Then, it archives your application as `app.zip`. Using an installer and a Windows Container, the tool creates an "expanded" AppX package - including the Windows Application Manifest (`AppXManifest.xml`) as well as the virtual file system and the virtual registry inside your output folder.
 
 Once we have the expanded AppX files, the tool uses the Windows App Packager (`MakeAppx.exe`) to create a single-file AppX package from those files on disk. Finally, the tool can be used to create a trusted certificate on your computer to sign the new AppX pacakge. With the signed AppX package, the CLI can also automatically install the package on your machine.
 

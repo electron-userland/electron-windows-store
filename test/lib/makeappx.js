@@ -31,8 +31,7 @@ describe('MakeAppX', () => {
         inputDirectory: '/fakepath/to/input',
         outputDirectory: '/fakepath/to/output',
         windowsKit: '/fakepath/to/windows/kit/bin',
-        packageName: 'testapp',
-        flatten: true
+        packageName: 'testapp'
       }
 
       mockery.registerMock('child_process', cpMock)
@@ -57,8 +56,7 @@ describe('MakeAppX', () => {
         inputDirectory: '/fakepath/to/input',
         outputDirectory: '/fakepath/to/output',
         windowsKit: '/fakepath/to/windows/kit/bin',
-        packageName: 'testapp',
-        flatten: true
+        packageName: 'testapp'
       }
 
       mockery.registerMock('child_process', cpMock)
@@ -83,8 +81,7 @@ describe('MakeAppX', () => {
         inputDirectory: '/fakepath/to/input',
         outputDirectory: '/fakepath/to/output',
         windowsKit: '/fakepath/to/windows/kit/bin',
-        packageName: 'testapp',
-        flatten: true
+        packageName: 'testapp'
       }
 
       mockery.registerMock('child_process', cpMock)
