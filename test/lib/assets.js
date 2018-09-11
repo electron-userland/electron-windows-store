@@ -14,7 +14,12 @@ describe('Assets', () => {
         copy: function (source, destination, cb) {
           source.should.equal(path.normalize('/fakepath/to/assets'))
           destination.should.equal(path.normalize('/fakepath/to/output/pre-appx/Assets'))
-          cb()
+
+          if (cb) {
+            cb()
+          } else {
+            return Promise.resolve()
+          }
         }
       }
 

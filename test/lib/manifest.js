@@ -17,7 +17,12 @@ describe('Manifest', () => {
 
           source.should.equal(expectedSource)
           destination.should.equal(expectedDestination)
-          cb()
+
+          if (cb) {
+            cb()
+          } else {
+            return Promise.resolve()
+          }
         }
       }
 

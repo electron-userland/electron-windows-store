@@ -11,7 +11,6 @@ global.testing = true
 // Run tests
 const assets = require('./lib/assets');
 const deploy = require('./lib/deploy');
-const flatten = require('./lib/flatten');
 const makeappx = require('./lib/makeappx');
 const makepri = require('./lib/makepri');
 const manifest = require('./lib/manifest');
