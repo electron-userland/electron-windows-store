@@ -23,7 +23,7 @@
   ],
   "engineStrict": true,
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=8.0.0"
   },
   "author": "",
   "license": "MIT",
@@ -32,8 +32,8 @@
   },
   "homepage": "https://github.com/felixrieseberg/electron-windows-store#readme",
   "dependencies": {
-    "chalk": "^2.3.1",
-    "commander": "^2.14.1",
+    "chalk": "^2.4.1",
+    "commander": "^2.18.0",
     "debug": "^3.1.0",
     "fs-extra": "^4.0.1",
     "inquirer": "^3.2.3",
