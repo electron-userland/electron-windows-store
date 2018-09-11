@@ -34,9 +34,9 @@
   "dependencies": {
     "chalk": "^2.4.1",
     "commander": "^2.18.0",
-    "debug": "^3.1.0",
+    "debug": "^4.0.0",
     "fs-extra": "^7.0.0",
-    "inquirer": "^3.2.3",
+    "inquirer": "^6.2.0",
     "lodash.defaults": "^4.2.0",
     "lodash.merge": "^4.6.1",
     "multiline": "^1.0.2",
