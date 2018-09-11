@@ -9,11 +9,11 @@ mockery.enable({ warnOnUnregistered: false })
 global.testing = true
 
 // Run tests
-const assets = require('./lib/assets');
-const deploy = require('./lib/deploy');
-const makeappx = require('./lib/makeappx');
-const makepri = require('./lib/makepri');
-const manifest = require('./lib/manifest');
-const sign = require('./lib/sign');
-const zip = require('./lib/zip');
-const utils = require('./lib/utils');
+require('./lib/assets');
+require('./lib/deploy');
+require('./lib/makeappx');
+require('./lib/makepri');
+require('./lib/manifest');
+require('./lib/sign');
+require('./lib/zip');
+require('./lib/utils');
