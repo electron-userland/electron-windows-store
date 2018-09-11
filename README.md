@@ -1,11 +1,7 @@
 # Electron Apps in the Windows Store
 <a href="https://david-dm.org/catalystcode/electron-windows-store" title="Dependency status"><img src="https://david-dm.org/catalystcode/electron-windows-store.svg"/></a> <a href="https://www.npmjs.com/package/electron-windows-store"><img src="https://badge.fury.io/js/electron-windows-store.svg" alt="npm version" height="18"></a> <a href="https://ci.appveyor.com/project/felixrieseberg/electron-windows-store"><img src="https://ci.appveyor.com/api/projects/status/jd5fn0ryk3a7v7i3/branch/master?svg=true" /></a>
 
-Electron-Windows-Store: A CLI that takes the packaged output of your Electron app, then converts it into an AppX package. Once Windows Codename Redstone (also known as the "Windows Anniversary Update") is released, you will be able to submit your AppX packages to the Windows Store. :package: Users will also be able to just double-click your `.appx` to automatically install it.
-
-> :warning: If you want to submit your package to the Windows Store, please sign up [for the Desktop Bridge Program](https://developer.microsoft.com/de-de/windows/projects/campaigns/desktop-bridge). Microsoft will currently not accept your packages if you have not done so.
-
-> :warning: The resulting AppX is not currently compatible with Assigned Access for use as a kiosk.
+Electron-Windows-Store: A CLI that takes the packaged output of your Electron app, then converts it into an AppX package. This allows you to submit your Electron app to the Windows Store :package:. You can also distribute your app as an `.appx` without using the Windows Store, allowing users to just double-click your `.appx` to automatically install it.
 
 ![](https://cloud.githubusercontent.com/assets/1426799/15042115/3471f6a0-12b9-11e6-91b4-80f25ec1d0b8.jpg)
 
@@ -32,9 +28,9 @@ This tool supports two methods to create AppX packages: Either using manual file
 # Usage
 Before running the Electron-Windows-Store CLI, let's make sure we have all the prerequisites in place. You will need:
 
- * Windows 10 Anniversary Update - Enterprise Edition (This is build 14316 and up - as of May 2016, it's part of the latest Windows Insiders Preview)
- * Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk) (the lastest version might not include all the tools needed, take a look at [the archives](https://developer.microsoft.com/en-us/windows/downloads/sdk-archive))
- * Node 4 or above (to check, run `node -v`)
+ * Windows 10 with at least the Anniversary Update (if your Windows has been updated before 2018, you're good).
+ * Windows 10 SDK from [here](https://developer.microsoft.com/en-us/windows/downloads/windows-10-sdk)
+ * Node 8 or above (to check, run `node -v`)
 
 ## Package Your Electron Application
 Package the application using [electron-packager](https://github.com/electron-userland/electron-packager) (or something similar). Make sure to remove node_modules that you don't need in your final application.
@@ -130,9 +126,11 @@ convertToWindowsStore({
 ```
 
 ## Convert with Container Virtualization
-The Desktop App Converter is capable of running an installer and your app during conversion inside a Windows Container. This is useful if you're not entirely sure what your application does, but requires installation of the Desktop App Converter.
+The Desktop App Converter is capable of running an installer and your app during conversion inside a Windows Container. This requires installation of the Desktop App Converter and has more advanced requirements.
 
-:computer: Ensure that your computer is capable of running containers: You'll need a 64 bit (x64) processor, hardware-assisted virtualization and second Level Address Translation (SLAT).
+:warning: The _vast majority_ of Electron apps should be packaged using "File Copying". Unless you know that you need your `appx` to be created using a Windows container, use the "File Copying" method described above.
+
+:computer: Ensure that your computer is capable of running containers: You'll need a 64 bit (x64) processor, hardware-assisted virtualization and second Level Address Translation (SLAT). You will also need Windows 10 Enterprise Edition.
 
 :bulb: Before running the CLI for the first time, you will have to setup the "Windows Desktop App Converter". This will take a few minutes, but don't worry - you only have to do this once. Download and the Desktop App Converter from [here](https://docs.microsoft.com/en-us/windows/uwp/porting/desktop-to-uwp-run-desktop-app-converter). You will receive two files: `DesktopAppConverter.zip` and `BaseImage-14316.wim`.
 
@@ -167,4 +165,4 @@ You can pair up your Electron app with a little invisible UWP side-kick, enablin
 The compiled AppX package still contains a win32 executable - and will therefore not run on Xbox, HoloLens, or Phones.
 
 ## License
-Licensed using the MIT License (MIT); Copyright (c) Microsoft Corporation. For more information, please see [LICENSE](LICENSE).
+Licensed using the MIT License (MIT); Copyright (c) Felix Rieseberg and Microsoft Corporation. For more information, please see [LICENSE](LICENSE).
