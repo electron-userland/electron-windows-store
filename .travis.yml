@@ -1,3 +1,19 @@
 language: node_js
+node_js: "10"
+
+jobs:
+  include:
+    - stage: test
+      script: npm run test
+
+cache:
+  npm: true
+
+before_install:
+  - npm config set no-progress
+
+install:
+  - npm install
+
 script:
   - commitlint-travis
