@@ -9,6 +9,7 @@ environment:
 deploy:
   on:
     branch: master
+  provider: script
 
 # Install scripts. (runs after repo cloning)
 install:
@@ -29,7 +30,6 @@ test_script:
 
 deploy_script:
   - npx semantic-release
-
 
 # Don't actually build.
 build: off
