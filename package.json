@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "standard \"lib/*.js\" \"bin/**/*.js\" && mocha",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "commitlint": "commitlint"
   },
   "repository": {
     "type": "git",
@@ -44,9 +45,11 @@
     "path-exists": "^3.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.2.1",
+    "@commitlint/config-conventional": "^7.1.2",
+    "@commitlint/travis-cli": "^7.2.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "conventional-changelog-eslint": "^3.0.1",
     "mocha": "^5.2.0",
     "mockery": "^2.1.0",
     "semantic-release": "^15.10.7",

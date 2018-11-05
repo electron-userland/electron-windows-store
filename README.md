@@ -168,7 +168,7 @@ The compiled AppX package still contains a win32 executable - and will therefore
 `electron-windows-store` uses [Semantic Release](https://github.com/semantic-release/semantic-release) to
 automate the whole release process. In order to have a PR merged, please ensure that your PR
 follows the commit guidelines so that our robots can understand your change. This repository uses
-the [`conventional-changelog` rules from the `eslint` repository](https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-eslint).
+the [default `conventional-changelog` rules](https://www.conventionalcommits.org/en/v1.0.0-beta.2/).
 
 ## License
 Licensed using the MIT License (MIT); Copyright (c) Felix Rieseberg and Microsoft Corporation. For more information, please see [LICENSE](LICENSE).
