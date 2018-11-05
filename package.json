@@ -7,7 +7,8 @@
     "electron-windows-store": "bin/windowsstore.js"
   },
   "scripts": {
-    "test": "standard \"lib/*.js\" \"bin/**/*.js\" && mocha"
+    "test": "standard \"lib/*.js\" \"bin/**/*.js\" && mocha",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
@@ -33,17 +34,17 @@
   "homepage": "https://github.com/felixrieseberg/electron-windows-store#readme",
   "dependencies": {
     "chalk": "^2.4.1",
-    "commander": "^2.18.0",
-    "debug": "^4.0.0",
+    "commander": "^2.19.0",
+    "debug": "^4.1.0",
     "fs-extra": "^7.0.0",
     "inquirer": "^6.2.0",
     "lodash.defaults": "^4.2.0",
     "lodash.merge": "^4.6.1",
-    "multiline": "^1.0.2",
+    "multiline": "^2.0.0",
     "path-exists": "^3.0.0"
   },
   "devDependencies": {
-    "chai": "^4.1.2",
+    "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "conventional-changelog-eslint": "^3.0.1",
     "mocha": "^5.2.0",
