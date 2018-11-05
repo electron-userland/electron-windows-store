@@ -29,7 +29,7 @@ test_script:
   - npm test
 
 deploy_script:
-  - npx semantic-release
+  - npm run semantic-release
 
 # Don't actually build.
 build: off
