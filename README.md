@@ -66,15 +66,15 @@ These are all options for the CLI:
   -i, --input-directory <path>               Directory containing your application
   -o, --output-directory <path>              Output directory for the appx
   -p, --package-version <version>            Version of the app package
-  -n, --package-name <name>                  Name of the app package
+  -n, --package-name <name>                  Name of the app package (example: 12345MyCompany.Ghost)
       --package-display-name <displayName>   Display name of the package
       --package-description <description>    Description of the package
       --package-background-color <color>     Background color for the app icon (example: #464646)
   -e, --package-executable <executablePath>  Path to the package executable
+  --application-id <applicationId>           Application id (example: Ghost)
   -a, --assets <assetsPath>                  Path to the visual assets for the appx
   -m, --manifest <manifestPath>              Path to a manifest, if you want to be overwritten
   -d, --deploy <true|false>                  Should the app be deployed after creation?
-  --identity-name <name>                     Name for identity
   --publisher <publisher>                    Publisher to use (example: CN=developmentca)
   --publisher-display-name <publisherDisplayName> Publisher display name to use
   --make-pri <true|false>                    Use makepri.exe (you don't need to unless you know you do)
@@ -101,10 +101,11 @@ convertToWindowsStore({
    inputDirectory: 'C:\\input\\',
    outputDirectory: 'C:\\output\\',
    packageVersion: '1.0.0.0',
-   packageName: 'Ghost',
+   packageName: '12345MyCompany.Ghost',
    packageDisplayName: 'Ghost Desktop',
    packageDescription: 'Ghost for Desktops',
    packageExecutable: 'app/Ghost.exe',
+   applicationId: 'Ghost',
    assets: 'C:\\assets\\',
    manifest: 'C:\\AppXManifest.xml',
    deploy: false,
