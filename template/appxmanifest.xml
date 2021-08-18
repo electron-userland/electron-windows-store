@@ -32,6 +32,9 @@
        Description="${packageDescription}">
         <uap:DefaultTile Wide310x150Logo="assets\SampleAppx.310x150.png" />
       </uap:VisualElements>
+      <Extensions>
+        ${protocol}
+      </Extensions>
     </Application>
   </Applications>
 </Package>

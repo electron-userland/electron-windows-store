@@ -121,7 +121,8 @@ convertToWindowsStore({
    createPriParams: ['/b'],
    finalSay: function () {
      return new Promise((resolve, reject) => resolve())
-   }
+   },
+   protocol: "ghost.app"
 })
 ```
 
