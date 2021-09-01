@@ -28,7 +28,7 @@ program
   .option('-p, --package-version <version>', 'Version of the app package')
   .option('-n, --package-name <name>', 'Name of the app package')
   .option('--identity-name <name>', 'Name for identity')
-  .option('--package-display-name <displayName>', 'Dispay name of the package')
+  .option('--package-display-name <displayName>', 'Display name of the package')
   .option('--package-description <description>', 'Description of the package')
   .option('--package-background-color <color>', 'Background color for the app icon (example: #464646)')
   .option('-e, --package-executable <executablePath>', 'Path to the package executable')
@@ -47,6 +47,7 @@ program
   .option('--signtool-params <params>', 'Additional parameters for signtool.exe (example: --makeappx-params "/l","/d")', list)
   .option('--create-config-params <params>', 'Additional parameters for makepri.exe "createconfig" (example: --create-config-params "/l","/d")', list)
   .option('--create-pri-params <params>', 'Additional parameters for makepri.exe "new" (example: --create-pri-params "/l","/d")', list)
+  .option('--protocol <protocol>', 'Protocol scheme to start the application with.')
   .option('--verbose <true|false>', 'Enable debug mode')
   .parse(process.argv)
 

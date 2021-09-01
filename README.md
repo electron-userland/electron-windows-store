@@ -119,10 +119,10 @@ convertToWindowsStore({
    makePri: true,
    createConfigParams: ['/a'],
    createPriParams: ['/b'],
+   protocol: "ghost-app",
    finalSay: function () {
      return new Promise((resolve, reject) => resolve())
-   },
-   protocol: "ghost.app"
+   }
 })
 ```
 
