@@ -37,7 +37,7 @@
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
     "debug": "^4.1.0",
-    "fs-extra": "^7.0.0",
+    "fs-extra": "^8.0.0",
     "inquirer": "^6.2.0",
     "lodash.defaults": "^4.2.0",
     "lodash.merge": "^4.6.1",
